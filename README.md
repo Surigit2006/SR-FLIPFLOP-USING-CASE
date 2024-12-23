@@ -57,32 +57,38 @@ Developed by:M.K.SURIYA PRAKASH
 RegisterNumber:24901016
 */
 ```
-module sr_ff(s,r,clk,q,qbar);
-input s,r,clk;
+module ex06(q,q_bar,s,r,clk,reset);
+//SR Flip Flop Behavioural Level using "case"
+input s,r,clk,reset;
 output reg q;
-output reg qbar;
-initial 
+output q_bar;
+always@(posedge clk)begin //for synchronous reset
+if (!reset) q<=0;
+else
 begin
-q=0;
-qbar=1;
+case({s,r})
+2'b00:q<=q;//no change
+2'b01:q<=1'b0; //write logic for reset
+2'b10:q<=1'b1; //write logic for set
+2'b11:q<=1'bx; //write logic for Invalid state
+endcase
 end
-always @(posedge clk)
-begin
-   q=s|(~r&q);
-   qbar=r|(~s&~q);
 end
+assign q_bar=~q;
 endmodule
 
 ```
 
 **RTL LOGIC FOR FLIPFLOPS**
 
-![image](https://github.com/user-attachments/assets/7c4e4803-e9a3-4a53-9f37-30ec8ca3c294)
+![image](https://github.com/user-attachments/assets/2b744c53-c6b1-4866-8ca5-818e777d0766)
+
 
 
 **TIMING DIGRAMS FOR FLIP FLOPS**
 
-![image](https://github.com/user-attachments/assets/6f27b8eb-c020-4757-8870-08260033c24b)
+![image](https://github.com/user-attachments/assets/0aefffaf-c902-4b74-ae2f-95e4a94d3d5b)
+
 
 
 **RESULTS**
