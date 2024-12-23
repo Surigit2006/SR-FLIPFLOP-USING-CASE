@@ -1,5 +1,7 @@
 # SR-FLIPFLOP-USING-CASE
 
+**DATE:** 21/10/24
+
 **AIM:**
 
 To implement  SR flipflop using verilog and validating their functionality using their functional tables
